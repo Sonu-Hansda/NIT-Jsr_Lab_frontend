@@ -6,8 +6,9 @@ import img from "../../assests/HeroImg/bg2.png";
 import useAnimationHook from "@/hooks/AnimationHooks/moveUp";
 import { motion } from "framer-motion";
 
-export default function Hero({ title, subtitle }) {
+export default function Hero({ title, subtitle, imageUrl }) {
   const { ref, controls } = useAnimationHook();
+
   //   const [index, updateIndex] = useState(0);
   //   useEffect(() => {
   //     setTimeout(() => {
@@ -25,12 +26,12 @@ export default function Hero({ title, subtitle }) {
         animate={controls}
         className="textContainer heroText mb-10"
       >
-        <div className="subtext ">{title}</div>
+        <div className="subtext font-sans">{title}</div>
 
-        <div className="subtextSmall">{subtitle}</div>
+        <div className="subtextSmall font-sans">{subtitle}</div>
       </motion.div>
       <Image
-        src={img}
+        src={imageUrl}
         className="img"
         style={{
           width: "100%",

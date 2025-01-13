@@ -6,7 +6,7 @@ import Gallery from "@/components/HomeComponents/Gallery/GallerySection";
 import Hero from "@/components/Hero/hero";
 import img1 from "../assets/images/lab1.png";
 import img2 from "../assets/images/lab2.png";
-import ResearchSection from "./(routes)/Research/ResearchSection/ResearchSection";
+import ResearchSection from "@/app/(routes)/Research/_components/ResearchSection/ResearchSection";
 import bg from '@/assets/images/bg.jpg'
 
 
