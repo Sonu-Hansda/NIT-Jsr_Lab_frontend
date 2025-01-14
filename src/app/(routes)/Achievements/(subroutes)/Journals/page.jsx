@@ -8,7 +8,7 @@ export default function JournalsPage() {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch(`https://cozy-captain-963d285ad5.strapiapp.com/api/achievements?populate=author`);
+      const response = await fetch(`https://lab-backend-mxf7.onrender.com/api/achievements?populate=author`);
       const data = await response.json();
 
       const sortedData = data.data.sort((a, b) => new Date(b.attributes.Date) - new Date(a.attributes.Date));

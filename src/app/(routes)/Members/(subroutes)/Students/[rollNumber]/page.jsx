@@ -13,7 +13,7 @@ const StudentPage = ({ params }) => {
     const fetchStudentData = async () => {
       try {
         const response = await fetch(
-          `https://cozy-captain-963d285ad5.strapiapp.com/api/Students?filters[roll][$eq]=${rollNumber}&populate=*`
+          `https://lab-backend-mxf7.onrender.com/api/Students?filters[roll][$eq]=${rollNumber}&populate=*`
         );
         const result = await response.json();
 

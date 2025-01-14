@@ -20,7 +20,7 @@ function NewsPage() {
     const getData = async () => {
       setLoading(true);
       const response = await fetch(
-        `https://cozy-captain-963d285ad5.strapiapp.com/api/notices?populate=Pdf&pagination[page]=${currentPage}&pagination[pageSize]=${ITEMS_PER_PAGE}`
+        `https://lab-backend-mxf7.onrender.com/api/notices?populate=Pdf&pagination[page]=${currentPage}&pagination[pageSize]=${ITEMS_PER_PAGE}`
       );
       const res = await response.json();
       setNotices(res.data);

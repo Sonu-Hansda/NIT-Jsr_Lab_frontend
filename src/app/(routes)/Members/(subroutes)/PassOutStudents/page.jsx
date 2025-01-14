@@ -10,7 +10,7 @@ export default function PassOutStudentsPage() {
     async function fetchAlumni() {
       try {
         const response = await fetchData(
-          "https://cozy-captain-963d285ad5.strapiapp.com/api/members?filters[role][$eq]=Alumni&populate=*"
+          "https://lab-backend-mxf7.onrender.com/api/members?filters[role][$eq]=Alumni&populate=*"
         );
         const data = response.data;
 

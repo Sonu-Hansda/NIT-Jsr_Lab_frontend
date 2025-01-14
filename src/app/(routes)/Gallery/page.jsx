@@ -19,7 +19,7 @@ const GalleryPage = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://cozy-captain-963d285ad5.strapiapp.com/api/galleries?populate=cover_image`
+          `https://lab-backend-mxf7.onrender.com/api/galleries?populate=cover_image`
         );
         const result = await response.json();
 

@@ -1,7 +1,7 @@
 import researchData from "@/app/(routes)/Research/data"
 import { useEffect, useState } from "react";
 
-const apiUrl= `https://cozy-captain-963d285ad5.strapiapp.com/api/research-sections?populate[Thumbnail]=*`
+const apiUrl= `https://lab-backend-mxf7.onrender.com/api/research-sections?populate[Thumbnail]=*`
 
 
 export const useResearchSubroutes =()=>{

@@ -11,7 +11,7 @@ export default function FundingsPage() {
 
   useEffect(() => {
 
-    fetch("https://cozy-captain-963d285ad5.strapiapp.com/api/fundings")
+    fetch("https://lab-backend-mxf7.onrender.com/api/fundings")
       .then(res => res.json())
       .then((obj) => {
         let fd = {};

@@ -20,10 +20,10 @@ const ResearchItem = ({ params }) => {
   useEffect(() => {
     const fetchResearchItem = async () => {
       const data = await fetchData(
-        `https://cozy-captain-963d285ad5.strapiapp.com/api/research-sections/${id}?populate=*`
+        `https://lab-backend-mxf7.onrender.com/api/research-sections/${id}?populate=*`
       );
       const imageData = await fetchData(
-        `https://cozy-captain-963d285ad5.strapiapp.com/api/research-sections/${id}?populate[0]=ReasearchContent.Image&populate[1]=AimAndSummary.Image`
+        `https://lab-backend-mxf7.onrender.com/api/research-sections/${id}?populate[0]=ReasearchContent.Image&populate[1]=AimAndSummary.Image`
       );
       const researchContentImages =
         imageData.data.attributes.ReasearchContent.map(

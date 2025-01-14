@@ -10,7 +10,7 @@ export default function Page() {
     const fetchStudents = async () => {
       try {  
         const response = await fetch(
-          `https://cozy-captain-963d285ad5.strapiapp.com/api/Students?populate[profilePhoto]=*`
+          `https://lab-backend-mxf7.onrender.com/api/Students?populate[profilePhoto]=*`
         );
         const data = await response.json();
         setStudents(data.data);
