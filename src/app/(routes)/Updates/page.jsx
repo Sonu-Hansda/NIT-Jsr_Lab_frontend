@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import NewsCard from "@/components/HomeComponents/NewsComponents/NewsCard";
@@ -16,19 +15,38 @@ function NewsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      const response = await fetch(
-        `https://lab-backend-mxf7.onrender.com/api/notices?populate=Pdf&pagination[page]=${currentPage}&pagination[pageSize]=${ITEMS_PER_PAGE}`
-      );
-      const res = await response.json();
-      setNotices(res.data);
-      setTotalPages(res.meta.pagination.pageCount);
-      setLoading(false);
+
+      try {
+        const response = await fetch(
+            `https://lab-backend-mxf7.onrender.com/api/notices?populate=Pdf&pagination[page]=${currentPage}&pagination[pageSize]=${ITEMS_PER_PAGE}`
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const res = await response.json();
+        const noticesData = res?.data || [];
+        const totalPageCount = res?.meta?.pagination?.pageCount || 0;
+
+        setNotices(noticesData);
+        setTotalPages(totalPageCount);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+        setNotices([]);
+        setTotalPages(0);
+      } finally {
+        setLoading(false);
+      }
     };
+
     getData();
   }, [currentPage]);
+
 
   const router = useRouter();
   const { setNews } = useNews();
