@@ -25,19 +25,15 @@ function NewsSection() {
         const response = await fetch(
             `https://lab-backend-mxf7.onrender.com/api/notices`
         );
-
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
         const res = await response.json();
-
-        // Safely handle undefined or unexpected structure
         const fetchedNewsData = res?.data || [];
         setNewsData(fetchedNewsData);
       } catch (error) {
         console.error("Error fetching news data:", error);
-        setNewsData([]); // Reset news data in case of error
+        setNewsData([]);
       } finally {
         setLoading(false);
       }
