@@ -7,7 +7,7 @@ export default function ResearchSection() {
   const [researchData, setResearchData] = useState([]);
   const[loading,setLoading]=useState(true);
   const apiURL =
-    "https://cozy-captain-963d285ad5.strapiapp.com/api/research-sections?populate[Thumbnail]=*";
+    "https://lab-backend-mxf7.onrender.com/api/research-sections?populate[Thumbnail]=*";
 
   useEffect(() => {
     const getResearchData= async() =>{

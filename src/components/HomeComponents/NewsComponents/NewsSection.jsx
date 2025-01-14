@@ -21,7 +21,7 @@ function NewsSection() {
   useEffect(()=>{
     const  getData= async()=>{
       setLoading(true);
-      const response= await fetch(`https://cozy-captain-963d285ad5.strapiapp.com/api/notices`);
+      const response= await fetch(`https://lab-backend-mxf7.onrender.com/api/notices`);
       const res= await response.json();
       setNewsData(res.data);
       setLoading(false);

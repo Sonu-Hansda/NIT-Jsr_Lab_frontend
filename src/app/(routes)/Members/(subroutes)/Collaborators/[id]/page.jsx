@@ -13,7 +13,7 @@ const CollaboratorPage = ({ params }) => {
     const fetchCollaboratorData = async () => {
       try {
         const response = await fetch(
-          `https://cozy-captain-963d285ad5.strapiapp.com/api/members/${id}?populate=*`
+          `https://lab-backend-mxf7.onrender.com/api/members/${id}?populate=*`
         );
         const result = await response.json();
 
