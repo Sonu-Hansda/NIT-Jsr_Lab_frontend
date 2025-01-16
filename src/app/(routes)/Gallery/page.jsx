@@ -19,7 +19,7 @@ const GalleryPage = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://lab-backend-mxf7.onrender.com/api/galleries?populate=cover_image`
+          `https://refreshing-benefit-91aab22e0f.strapiapp.com/api/galleries?populate=cover_image`
         );
         const result = await response.json();
 

@@ -32,12 +32,15 @@ export default function Hero({ title, subtitle, imageUrl }) {
       </motion.div>
       <Image
         src={imageUrl}
+        alt={"hero img"}
         className="img"
         style={{
           width: "100%",
           animation: "zoom 5s infinite alternate",
         }}
-      ></Image>
+        width={1000}
+        height={500}
+      />
     </div>
   );
 }

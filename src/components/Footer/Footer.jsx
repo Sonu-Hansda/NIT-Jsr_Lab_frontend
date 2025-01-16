@@ -30,7 +30,7 @@ function Footer() {
               <p className="text-gray-600 pl-8 ">
                 +91 9102197734
                 <br />
-                <a href="mailto:koushendra.cse@nitjsr.ac.in" className="text-cyan-600">koushlendra.cse@nitjsr.ac.in</a>
+                <a href="mailto:koushlendra.cse@nitjsr.ac.in" className="text-cyan-600">koushlendra.cse@nitjsr.ac.in</a>
                 <br />
                 <a href="mailto:mai2022@nitjsr.ac.in" className="text-cyan-600">mai2022@nitjsr.ac.in</a>
               </p>

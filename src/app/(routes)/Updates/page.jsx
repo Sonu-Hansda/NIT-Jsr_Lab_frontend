@@ -22,7 +22,7 @@ function NewsPage() {
 
       try {
         const response = await fetch(
-            `https://lab-backend-mxf7.onrender.com/api/notices?populate=Pdf&pagination[page]=${currentPage}&pagination[pageSize]=${ITEMS_PER_PAGE}`
+            `https://refreshing-benefit-91aab22e0f.strapiapp.com/api/notices?populate=Pdf&pagination[page]=${currentPage}&pagination[pageSize]=${ITEMS_PER_PAGE}`
         );
 
         if (!response.ok) {

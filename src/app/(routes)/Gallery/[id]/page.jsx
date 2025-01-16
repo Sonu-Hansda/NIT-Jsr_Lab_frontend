@@ -21,7 +21,7 @@ const GalleryPage = ({ params }) => {
         const fetchImages = async () => {
             try {
                 const response = await fetch(
-                    `https://lab-backend-mxf7.onrender.com/api/galleries/${id}?populate[1]=images.media`
+                    `https://refreshing-benefit-91aab22e0f.strapiapp.com/api/galleries/${id}?populate[1]=images.media`
                 );
                 const result = await response.json();
 
