@@ -6,10 +6,10 @@ import useAnimationHook from "@/hooks/AnimationHooks/moveUp";
 
 const Content = ({ link, text, imageUrl, thumbnailImage }) => {
   const { ref, controls } = useAnimationHook();
-  const mainImage = imageUrl[0];
+  // const mainImage = imageUrl[0];
 
   return (
-    <motion.div
+    <motion.div  
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={controls}
@@ -18,10 +18,10 @@ const Content = ({ link, text, imageUrl, thumbnailImage }) => {
       <div className="flex-[1_1_330px] h-full text-white p-4 m-2 max-width-[600px] relative">
         <div className="w-full mb-5">
           <Image
-            src={mainImage.url} // Use the renamed variable here
+            src={imageUrl} 
             alt="Research Image"
-            width={mainImage.width}
-            height={mainImage.height}
+            width={1000}
+            height={600}
             layout="responsive"
           />
         </div>
@@ -36,12 +36,13 @@ const Content = ({ link, text, imageUrl, thumbnailImage }) => {
 
       <div className="w-full h-[40vw] bg-blue-500 relative lg:max-h-[400px] xl:max-h-[400px] py-4 my-4">
         <Image
-          src={thumbnailImage.url}
+          src={thumbnailImage}
           alt={`Content Image `}
           layout="fill"
           // width={600}
           // height={400}
-          className=""
+          className="h-auto w-auto"
+          priority={false} 
         />
       </div>
     </motion.div>

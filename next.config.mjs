@@ -16,7 +16,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cozy-captain-963d285ad5.media.strapiapp.com",
+        hostname: "refreshing-benefit-91aab22e0f.media.strapiapp.com",
         port: "",
         pathname: "/**",
       },

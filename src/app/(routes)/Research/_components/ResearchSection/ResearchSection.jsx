@@ -7,7 +7,7 @@ export default function ResearchSection() {
   const [researchData, setResearchData] = useState([]);
   const[loading,setLoading]=useState(true);
   const apiURL =
-    "https://lab-backend-mxf7.onrender.com/api/research-sections?populate[Thumbnail]=*";
+    "https://refreshing-benefit-91aab22e0f.strapiapp.com/api/research-sections?populate[Thumbnail]=*";
 
   useEffect(() => {
     const getResearchData= async() =>{

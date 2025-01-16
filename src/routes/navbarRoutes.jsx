@@ -1,7 +1,7 @@
 import researchData from "@/app/(routes)/Research/data"
 import { useEffect, useState } from "react";
 
-const apiUrl= `https://lab-backend-mxf7.onrender.com/api/research-sections?populate[Thumbnail]=*`
+const apiUrl = `https://refreshing-benefit-91aab22e0f.strapiapp.com/api/research-sections?populate[Thumbnail]=*`
 
 
 export const useResearchSubroutes =()=>{
@@ -15,11 +15,11 @@ export const useResearchSubroutes =()=>{
                 const response= await fetch(apiUrl);
                 const result=await response.json();
                 if(result.data){
-                    defaultImage = "https://image.slidesdocs.com/responsive-images/background/detailed-3d-rendering-of-laboratory-instruments-and-microscope-perfect-for-chemical-research-on-a-blue-backdrop-powerpoint-background_d56837dd13__960_540.jpg";
+                    const defaultImage = "https://image.slidesdocs.com/responsive-images/background/detailed-3d-rendering-of-laboratory-instruments-and-microscope-perfect-for-chemical-research-on-a-blue-backdrop-powerpoint-background_d56837dd13__960_540.jpg";
 
                    const subroutes = result.data.map(item=>({
                     name: item.attributes.ResearchTitle,
-                    href:`Research/${item.id}`,
+                    href:`/Research/${item.id}`,
                     image: item.attributes.Thumbnail?.data?.attributes?.url || defaultImage,
                    }))
                    setResearchSubroutes(subroutes);
