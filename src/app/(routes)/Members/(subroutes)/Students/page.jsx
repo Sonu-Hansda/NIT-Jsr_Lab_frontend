@@ -33,7 +33,7 @@ export default function Page() {
     (student) => student.attributes.degree === "Ph. D"
   );
   const partTimePhdStudents = students.filter(
-    (student) => student.attributes.degree === "Part Time Ph.D"
+    (student) => student.attributes.degree === "Part Time Ph. D"
   );
   const mastersStudents = students.filter(
     (student) => student.attributes.degree === "Masters Program"
