@@ -15,6 +15,8 @@ function NewsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  const router = useRouter();
+  const { setNews } = useNews();
 
   useEffect(() => {
     const getData = async () => {
@@ -22,7 +24,7 @@ function NewsPage() {
 
       try {
         const response = await fetch(
-            `https://refreshing-benefit-91aab22e0f.strapiapp.com/api/notices?populate=Pdf&pagination[page]=${currentPage}&pagination[pageSize]=${ITEMS_PER_PAGE}`
+          `https://refreshing-benefit-91aab22e0f.strapiapp.com/api/notices?populate=Pdf&pagination[page]=${currentPage}&pagination[pageSize]=${ITEMS_PER_PAGE}`
         );
 
         if (!response.ok) {
@@ -47,10 +49,6 @@ function NewsPage() {
     getData();
   }, [currentPage]);
 
-
-  const router = useRouter();
-  const { setNews } = useNews();
-
   const handleCardClick = (newsItem) => {
     setNews(newsItem);
     router.push("/Updates/Details");
@@ -61,35 +59,46 @@ function NewsPage() {
   };
 
   return (
-    <div className='flex flex-col bg-white py-5 min-h-dvh text-slate-600 text-right items-center'>
-      <div className='pt-6 text-left flex justify-start max-w-[1256px] w-full px-9'>
+    <div className="flex flex-col bg-gray-50 py-5 min-h-dvh text-slate-600 text-right items-center">
+      <div className="pt-6 text-left flex justify-start max-w-[1256px] w-full px-4 sm:px-6 lg:px-8">
         <BreadCrumbs />
       </div>
-      <div>
-        <h1 className='text-5xl font-sans font-light relative right-6 text-sky-950'>NEWS</h1>
-        <div className="py-6 text-left flex flex-col items-center max-w-[1256px] w-full px-4">
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            notices.map((newsItem) => {
-              const viewMoreLink = newsItem.attributes.Pdf?.data?.attributes?.url || "#";
-              const galleryLink = newsItem.attributes.Pdf?.data?.attributes?.url || "#";
-              return (
-                <div key={newsItem.id} onClick={() => handleCardClick(newsItem)}>
-                  <NewsCard
-                    date={newsItem.attributes.publishedAt}
-                    title={newsItem.attributes.Title}
-                    description={newsItem.attributes.Description}
-                    viewMoreLink={viewMoreLink}
-                    galleryLink={galleryLink}
-                  />
-                </div>
-              );
-            })
-          )}
-        </div>
+
+      <div className="w-full max-w-[1256px] px-4 sm:px-6 lg:px-8">
+        <h1 className="text-4xl sm:text-5xl font-sans font-light text-sky-950 mb-6">
+          NEWS
+        </h1>
       </div>
-      <div className="flex justify-center mb-10">
+
+      <div className="w-full max-w-[1256px] px-4 sm:px-6 lg:px-8">
+        {loading ? (
+          <div className="flex justify-center items-center h-40">
+            <p className="text-xl text-sky-950">Loading...</p>
+          </div>
+        ) : (
+          notices.map((newsItem) => {
+            const viewMoreLink = newsItem.attributes.Pdf?.data?.attributes?.url || "#";
+            const galleryLink = newsItem.attributes.Pdf?.data?.attributes?.url || "#";
+            return (
+              <div
+                key={newsItem.id}
+                onClick={() => handleCardClick(newsItem)}
+                className="cursor-pointer"
+              >
+                <NewsCard
+                  date={newsItem.attributes.publishedAt}
+                  title={newsItem.attributes.Title}
+                  description={newsItem.attributes.Description}
+                  viewMoreLink={viewMoreLink}
+                  galleryLink={galleryLink}
+                />
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      <div className="flex justify-center my-10">
         <Stack spacing={2}>
           <Pagination
             count={totalPages}

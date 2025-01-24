@@ -1,47 +1,28 @@
-'use client';
+"use client";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import useAnimationHook from '@/hooks/AnimationHooks/moveUp';
-import Link from 'next/link';
-
-function NewsCard({ date, title, description, viewMoreLink, galleryLink }) {
-  const { ref, controls } = useAnimationHook();
-  console.log("View more link",viewMoreLink);
-  
-
+const NewsCard = ({ date, title, description, viewMoreLink, galleryLink }) => {
   return (
-
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }} 
-      animate={controls}
-      className='px-5 py-5 text-xl font-sans font-light'
+      className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 mb-6"
+      whileHover={{ scale: 1.02 }}
     >
-     
-      <div className='flex flex-col sm:flex-row p-4 gap-4 items-start bg-transparent text-gray-600 rounded-lg shadow-md'>
-        <div className='flex gap-4 items-center'>
-          <div className='flex flex-col gap-2'>
-
-          <p className='w-max pt-2'>{(date.split('T'))[0]}</p>
-            <Link href={viewMoreLink} className="bg-transparent border text-xl text-center border-gray-500 px-4 py-2 rounded w-max">View More</Link>
-            
-          </div>
+      <div className="flex flex-col space-y-4">
+        <span className="text-sm text-slate-500">{new Date(date).toLocaleDateString()}</span>
+        <h2 className="text-2xl font-semibold text-sky-950">{title}</h2>
+        <p className="text-slate-700">{description}</p>
+        <div className="flex space-x-4">
+          <Link href={viewMoreLink} className="text-sky-600 hover:text-sky-700">
+            View More
+          </Link>
+          <Link href={galleryLink} className="text-sky-600 hover:text-sky-700">
+            Gallery
+          </Link>
         </div>
-        
-        <div className='flex-grow hover:text-cyan-600 transition duration-300 '>
-          <h2 className='text-3xl mb-4 text-sky-800 font-thin'>{title}</h2>
-
-          <p className='line-clamp-6 sm:line-clamp-4 overflow-hidden'>
-            {description}
-          </p>
-        </div>
-        
       </div>
-      {/* <hr className='h-[1px] w-full bg-black text-transparent' /> */}
-    
     </motion.div>
   );
-}
+};
 
 export default NewsCard;

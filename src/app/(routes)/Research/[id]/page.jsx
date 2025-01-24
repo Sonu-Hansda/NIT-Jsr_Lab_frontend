@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 import { fetchData } from "@/utils/fetchData";
@@ -10,6 +9,7 @@ import ResearchMembers from "../_components/ResearchMembersSection";
 import ResearchPapers from "../_components/ResearchPapers";
 import Breadcrumbs from "../_components/Breadcrumbs";
 import img from "../assests/HeroImg/bg2.png";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const ResearchItem = ({ params }) => {
   const { id } = params;
@@ -45,7 +45,7 @@ const ResearchItem = ({ params }) => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (!researchItem) {
@@ -66,17 +66,20 @@ const ResearchItem = ({ params }) => {
   const thumbnailImage = Thumbnail?.data?.attributes?.formats?.large?.url || img;
 
   return (
-    <div>
+    <div className="bg-gray-50 min-h-screen">
       <ResearchHero
         title={ResearchTitle}
         subtitle={ResearchSubTitle}
         imageUrl={thumbnailImage}
       />
+
       <Breadcrumbs />
+
       <Theme
         themes={Themes?.map((theme) => theme.Theme) || []}
         heading={Description}
       />
+
       {ReasearchContent && ReasearchContent.length > 0 && (
         <Content
           link={ReasearchContent[0]?.Link}
@@ -85,7 +88,9 @@ const ResearchItem = ({ params }) => {
           thumbnailImage={thumbnailImage}
         />
       )}
+
       <ResearchPapers papers={PapersPublished || []} />
+
       <ResearchMembers membersList={Members?.map((member) => member.Members) || []} />
     </div>
   );

@@ -10,6 +10,18 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "tomocloud.xsrv.jp",
+      },
+      {
+        protocol: "https",
+        hostname: "pbs.twimg.com",
+      },
+      {
+        protocol: "https",
         hostname: "nitjsr.ac.in",
         port: "",
         pathname: "/**",
