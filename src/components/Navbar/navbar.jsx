@@ -1,164 +1,130 @@
-'use client'
-import Image from "next/image"
-import logo from "../../assets/images/logo.png"
-import Link from "next/link"
-import { easeInOut, motion } from "framer-motion"
-import React, { useState } from "react"
-import AchievementsHoverDropdown from "./components/AchievementsHoverDropdown"
-import MembersHoverDropdown from "./components/MembersHoverDropdown"
-import ResearchHoverDropdown from "./components/ResearchHoverDropdown"
-import './styles.css'
+'use client';
+
+import Image from "next/image";
+import logo from "../../assets/images/logo.png";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
+import AchievementsHoverDropdown from "./components/AchievementsHoverDropdown";
+import MembersHoverDropdown from "./components/MembersHoverDropdown";
+import ResearchHoverDropdown from "./components/ResearchHoverDropdown";
+import './styles.css';
 
 export default function Navbar() {
-
   const [hoveredItem, setHoveredItem] = useState(null);
 
-  const handleMouseEnter = (item) => {
-    setHoveredItem(item);
-  }
-
-  const handleMouseLeave = () => {
-    setHoveredItem(null);
-  }
-
-  // for dropdown animations
+  const handleMouseEnter = (item) => setHoveredItem(item);
+  const handleMouseLeave = () => setHoveredItem(null);
 
   const dropdownVariants = {
     hidden: {
-      opacity: 1,
+      opacity: 0,
       scaleY: 0,
-      originX: 0,
-      left: 0,
+      transformOrigin: "top",
     },
     visible: {
       opacity: 1,
       scaleY: 1,
-      originX: 0,
-      left: 0,
+      transformOrigin: "top",
     },
     exit: {
+      opacity: 0,
       scaleY: 0,
-      originX: 0,
-      left: 0,
+      transformOrigin: "top",
     },
   };
 
   return (
+    <nav className="fixed top-0 w-full backdrop-blur-md bg-white/80 border-b border-gray-200 z-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-20 items-center">
+          <Link href="/" className="flex-shrink-0">
+            <Image src={logo} width={80} height={80} alt="Lab Logo" />
+          </Link>
 
-    <div className="lg:visible font-sans xl:visible invisible shadow-md bg-white flex flex-row fixed h-20 w-full z-40 text-black bg-opacity-80">
+          <div className="hidden lg:flex space-x-8">
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter('Research')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link href="/Research" className="text-gray-700 hover:text-blue-600 font-semibold">
+                RESEARCH
+              </Link>
+              <AnimatePresence>
+                {hoveredItem === 'Research' && (
+                  <motion.div
+                    className="absolute top-full left-0 w-48"
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={dropdownVariants}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                  >
+                    <ResearchHoverDropdown />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
-      <div className="relative flex items-center justify-center" >
-        <span className="p-4 font-semibold text-xl">
-          <span><Link href="/">
-            <Image
-              src={logo}
-              width={80}
-              height={80}
-              alt="logo"
-            />
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter('Members')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <span className="text-gray-700 hover:text-blue-600 font-semibold cursor-pointer">
+                MEMBERS
+              </span>
+              <AnimatePresence>
+                {hoveredItem === 'Members' && (
+                  <motion.div
+                    className="absolute top-full left-0 w-48"
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={dropdownVariants}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                  >
+                    <MembersHoverDropdown />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
-          </Link></span>
-        </span>
-      </div>
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter('Achievements')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link href="/Achievements" className="text-gray-700 hover:text-blue-600 font-semibold">
+                ACHIEVEMENTS
+              </Link>
+              <AnimatePresence>
+                {hoveredItem === 'Achievements' && (
+                  <motion.div
+                    className="absolute top-full left-0 w-48"
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    variants={dropdownVariants}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                  >
+                    <AchievementsHoverDropdown />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
-      <div className="flex flex-row justify-evenly">
+            <Link href="/Gallery" className="text-gray-700 hover:text-blue-600 font-semibold">
+              GALLERY
+            </Link>
 
-        {/* Research  */}
-        <div className="relative px-3 flex items-center justify-evenly">
-          <span className="test p-4 md:ml-36 lg:ml-44" onMouseEnter={() => handleMouseEnter('Research')} onMouseLeave={handleMouseLeave}>
-            <span className="navbar-option font-semibold"><Link href="/Research">RESEARCH</Link></span>
-          </span>
-        </div>
-        <motion.div
-          className="absolute top-full left-0 right-0"
-          initial="hidden"
-          animate={hoveredItem === 'Research' ? 'visible' : 'hidden'}
-          exit="exit"
-          variants={dropdownVariants}
-          transition={{
-            duration: 0.3,
-            delay: 0.1,
-            ease: easeInOut
-          }}
-        >
-          <div onMouseEnter={() => handleMouseEnter('Research')} onMouseLeave={handleMouseLeave}>
-            <ResearchHoverDropdown />
+            <Link href="/Updates" className="text-gray-700 hover:text-blue-600 font-semibold">
+              UPDATES
+            </Link>
           </div>
-
-        </motion.div>
-
-
-
-        {/* Members  */}
-        <div className="relative px-4 flex items-center justify-center">
-          <span className="test p-4 md:left-1/4 cursor-pointer" onMouseEnter={() => handleMouseEnter('Members')} onMouseLeave={handleMouseLeave}>
-            <span className="navbar-option font-semibold">MEMBERS</span>
-          </span>
-
-        </div>
-        <motion.div
-          className="absolute top-full left-0 right-0"
-          initial="hidden"
-          animate={hoveredItem === 'Members' ? 'visible' : 'hidden'}
-          exit="exit"
-          variants={dropdownVariants}
-          transition={{
-            duration: 0.3,
-            delay: 0.1,
-            ease: easeInOut
-          }}
-        >
-          <div onMouseEnter={() => handleMouseEnter('Members')} onMouseLeave={handleMouseLeave}>
-            <MembersHoverDropdown />
-          </div>
-
-        </motion.div>
-
-
-
-        {/* Achievements  */}
-        <div className="relative px-4 flex items-center justify-center">
-          <span className="test p-4 md:left-1/2" onMouseEnter={() => handleMouseEnter('Achievements')} onMouseLeave={handleMouseLeave}>
-            <span className="navbar-option font-semibold"><Link href="/Achievements">ACHIEVEMENTS</Link></span>
-          </span>
-        </div>
-        <motion.div
-          className="absolute top-full left-0 right-0"
-          initial="hidden"
-          animate={hoveredItem === 'Achievements' ? 'visible' : 'hidden'}
-          exit="exit"
-          variants={dropdownVariants}
-          transition={{
-            duration: 0.3,
-            delay: 0.1,
-            ease: easeInOut
-          }}
-        >
-          <div onMouseEnter={() => handleMouseEnter('Achievements')} onMouseLeave={handleMouseLeave}>
-            <AchievementsHoverDropdown />
-          </div>
-        </motion.div>
-
-
-
-        {/* Gallery */}
-        <div className="relative px-4 flex items-center justify-center">
-          <span className="test p-4 " onMouseLeave={handleMouseLeave}>
-            <span className="test navbar-option font-semibold"><Link className="text-sky-900" href="/Gallery">GALLERY</Link></span>
-          </span>
-
-        </div>
-
-        {/* Updates */}
-        <div className="relative px-4 flex items-center justify-center">
-          <span className="test p-4 " onMouseLeave={handleMouseLeave}>
-            <span className="test navbar-option font-semibold"><Link className="text-sky-900" href="/Updates">UPDATES</Link></span>
-          </span>
-
         </div>
       </div>
-
-
-    </div>
-  )
+    </nav>
+  );
 }

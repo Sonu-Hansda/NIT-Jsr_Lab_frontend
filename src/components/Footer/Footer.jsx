@@ -7,9 +7,8 @@ import PinDropOutlinedIcon from '@mui/icons-material/PinDropOutlined';
 
 function Footer() {
   return (
-
-    <div className="bg-sky-50 w-full h-full font-sans z-30 mt-24">
-      <div className="max-w-7xl relative mx-10 py-12  px-5 sm:px-10 lg:px-8">
+    <div className="w-full font-sans z-30 mt-24 backdrop-blur-md bg-white/80 border-t border-gray-200">
+      <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-8 py-12">
         <div className="flex flex-col lg:flex-row items-start justify-evenly mb-14 mt-9 lg:mb-20">
           <div className="flex items-start space-x-4 mb-10 lg:mb-0">
             <Link href="/">
@@ -17,27 +16,45 @@ function Footer() {
                 src={logo}
                 height={100}
                 width={100}
-                alt="logo"
+                alt="Lab Logo"
+                className="hover:opacity-80 transition-opacity duration-200"
               />
             </Link>
           </div>
-          <div className="flex flex-col  lg:flex-row sm:ml-3 ml-3 lg:space-x-24">
-            <div className="flex flex-col items-start mb-8 lg:mb-0 ">
+
+          <div className="flex flex-col lg:flex-row sm:ml-3 ml-3 lg:space-x-24">
+
+            <div className="flex flex-col items-start mb-8 lg:mb-0">
               <div className="flex items-center space-x-2 mb-2">
-                <span className='text-cyan-600'><PhoneOutlinedIcon /></span>
+                <span className="text-cyan-600">
+                  <PhoneOutlinedIcon />
+                </span>
                 <h2 className="text-xl font-semibold text-gray-800">Get in Touch</h2>
               </div>
-              <p className="text-gray-600 pl-8 ">
+              <p className="text-gray-600 pl-8">
                 +91 9102197734
                 <br />
-                <a href="mailto:koushlendra.cse@nitjsr.ac.in" className="text-cyan-600">koushlendra.cse@nitjsr.ac.in</a>
+                <a
+                  href="mailto:koushlendra.cse@nitjsr.ac.in"
+                  className="text-cyan-600 hover:text-cyan-700 transition-colors duration-200"
+                >
+                  koushlendra.cse@nitjsr.ac.in
+                </a>
                 <br />
-                <a href="mailto:mai2022@nitjsr.ac.in" className="text-cyan-600">mai2022@nitjsr.ac.in</a>
+                <a
+                  href="mailto:mai2022@nitjsr.ac.in"
+                  className="text-cyan-600 hover:text-cyan-700 transition-colors duration-200"
+                >
+                  mai2022@nitjsr.ac.in
+                </a>
               </p>
             </div>
-            <div className="flex flex-col items-start  mb-6 lg:mb-0">
+
+            <div className="flex flex-col items-start mb-6 lg:mb-0">
               <div className="flex items-center space-x-2 mb-2">
-                <span className='text-cyan-600'><PinDropOutlinedIcon /></span>
+                <span className="text-cyan-600">
+                  <PinDropOutlinedIcon />
+                </span>
                 <h2 className="text-xl font-semibold text-gray-800">Address</h2>
               </div>
               <p className="text-gray-600 pl-8">
@@ -50,7 +67,9 @@ function Footer() {
             </div>
           </div>
         </div>
+
         <div className="h-[1px] my-5 w-full bg-slate-200"></div>
+
         <p className="text-center text-lg text-gray-600 mt-10">
           &copy; 2024 NIT Jamshedpur Laboratory. All rights reserved.
         </p>

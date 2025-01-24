@@ -6,11 +6,11 @@ import { useInView } from "react-intersection-observer";
 import ViewMore from "../ViewMoreComponent/ViewMoreComponent";
 import Link from "next/link";
 
-const TeamComponent = ({ title, description, link, imageUrl}) => {
+const TeamComponent = ({ title, description, link, imageUrl }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    triggerOnce: true, 
-    threshold: 0.3, 
+    triggerOnce: true,
+    threshold: 0.3,
   });
 
   const [hovered, setHovered] = useState(false);
@@ -29,27 +29,40 @@ const TeamComponent = ({ title, description, link, imageUrl}) => {
     <Link href={link}>
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 50 }} 
+        initial={{ opacity: 0, y: 50 }}
         animate={controls}
-        className="relative h-[345px] w-full "
+        className="relative h-[345px] w-full rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <div className="filter grayscale hover:filter-none transition-all transition-duration-500 w-full h-full object-cover">
-        <Image
-          src={imageUrl}
-          alt="Research Image"
-          width={250}
-          height={500}
-          className="h-full object-cover w-full "
-        />
+        <div className="relative h-full w-full">
+          <Image
+            src={imageUrl}
+            alt="Research Image"
+            fill
+            className="object-cover hover:grayscale-0 transition-all duration-500"
+          />
 
-        <div className="absolute top-2 left-0 p-4 text-slate-900">
-          <h2 className="text-3xl lg:text-2xl font-light font-sans text-white">{title}</h2>
+          <div
+            className={`absolute inset-0 backdrop-blur-sm transition-all duration-500 ${
+              hovered ? "bg-black/10 backdrop-blur-none" : "bg-black/40 backdrop-blur-md"
+            }`}
+          />
         </div>
-        <div className="absolute bottom-0 right-3 ">
-          <ViewMore width={90} colour="white" hovering={hovered?"yes":"no"}/>
-        </div>
+
+        <div className="absolute inset-0 p-6 flex flex-col justify-between">
+          <motion.h2
+            className="text-2xl lg:text-3xl font-sans font-semibold text-white"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            {title}
+          </motion.h2>
+
+          <div className="self-end">
+            <ViewMore width={90} colour="white" hovering={hovered ? "yes" : "no"} />
+          </div>
         </div>
       </motion.div>
     </Link>
