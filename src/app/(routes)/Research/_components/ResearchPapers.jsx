@@ -1,41 +1,52 @@
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
 import useAnimationHook from "@/hooks/AnimationHooks/moveUp";
 
 function ResearchPapers({ papers }) {
   const { ref, controls } = useAnimationHook();
-  const { ref: ref2, controls: controls2 } = useAnimationHook();
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }} // Start slightly below with 0 opacity
+      initial={{ opacity: 0, y: 50 }}
       animate={controls}
-      className="w-full pt-4"
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="w-full pt-4 backdrop-blur-md bg-white/80 rounded-lg shadow-lg p-6 md:p-8 mx-auto my-10 max-w-[1256px]"
     >
-      <div className="text-center w-[90vw] mx-auto border-2 border-transparent border-b-slate-200 ">
-        <h3 className="text-xl font-bold mb-6 opacity-80 text-sky-900">
+      <div className="text-center border-b-2 border-slate-200 pb-6">
+        <h3 className="text-2xl font-bold text-sky-900 opacity-90">
           PAPERS PUBLISHED
         </h3>
-        <div className="mb-6">
-          {papers && papers.length > 0 ? (
-            papers.map((paper, index) => (
-              <React.Fragment key={index}>
-                <span className="opacity-50 text-sm sm:text-base md:text-sm lg:text-sm">
-                  {paper.title} - {paper.authors?.join(", ")} ({paper.year}){" "}
-                  <br />
-                  Published in: {paper.publishedIn}
-                </span>
+      </div>
+
+      <div className="mt-6">
+        {papers && papers.length > 0 ? (
+          papers.map((paper, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="mb-6"
+            >
+              <p className="text-sm sm:text-base text-slate-600 opacity-90">
+                <span className="font-semibold">{paper.title}</span> -{" "}
+                {paper.authors?.join(", ")} ({paper.year})
                 <br />
-                <br />
-              </React.Fragment>
-            ))
-          ) : (
-            <span className="opacity-50 text-sm sm:text-base md:text-sm lg:text-sm">
-              No papers listed
-            </span>
-          )}
-        </div>
+                <span className="text-sky-600">Published in:</span>{" "}
+                {paper.publishedIn}
+              </p>
+              {index !== papers.length - 1 && (
+                <hr className="my-4 border-gray-200" />
+              )}
+            </motion.div>
+          ))
+        ) : (
+          <p className="text-sm sm:text-base text-slate-600 opacity-90">
+            No papers listed
+          </p>
+        )}
       </div>
     </motion.div>
   );

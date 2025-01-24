@@ -1,5 +1,5 @@
 "use client";
-import React from "react"; // Ensure React is imported
+import React from "react";
 import { motion } from "framer-motion";
 import useAnimationHook from "@/hooks/AnimationHooks/moveUp";
 
@@ -9,29 +9,33 @@ const Theme = ({ themes, heading }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }} // Start slightly below with 0 opacity
+      initial={{ opacity: 0, y: 50 }}
       animate={controls}
-      className="mb-16 box-border"
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="mb-16"
     >
-      <div className="w-11/12 max-w-screen-xl mx-auto my-5 box-border text-center">
-        <div className="font-serif text-xl box-border">
-          <h2 className="mb-10">{heading}</h2>
-          <hr className="mb-10 mx-auto w-[150px] border-box border-gray-800 border-t-[1px] "></hr>
+      <div className="w-11/12 max-w-screen-xl mx-auto my-5 text-center backdrop-blur-md bg-white/80 rounded-lg shadow-lg p-6 md:p-8">
+        <div className="font-serif text-xl">
+          <h2 className="mb-6 text-2xl md:text-3xl font-light text-sky-950">
+            {heading}
+          </h2>
+          <hr className="mb-6 mx-auto w-24 border-t-2 border-sky-500" />
         </div>
-        <h3 className="mb-3 text-lg font-bold  text-sky-900 opacity-80">THEME</h3>
-        <p className="text-slate-500 opacity-90 font-bold text-sm lg:text-base">
+
+        <h3 className="mb-4 text-lg font-bold text-sky-900 opacity-80">THEME</h3>
+
+        <div className="text-slate-600 opacity-90 font-medium text-sm lg:text-base">
           {themes && themes.length > 0 ? (
             themes.map((theme, index) => (
               <React.Fragment key={index}>
-                <span>{theme}</span>
-                <br />
-                <br />
+                <p className="mb-3">{theme}</p>
+                {index !== themes.length - 1 && <hr className="my-3 border-gray-200" />}
               </React.Fragment>
             ))
           ) : (
-            <span>No themes available</span>
+            <p className="text-slate-500">No themes available</p>
           )}
-        </p>
+        </div>
       </div>
     </motion.div>
   );

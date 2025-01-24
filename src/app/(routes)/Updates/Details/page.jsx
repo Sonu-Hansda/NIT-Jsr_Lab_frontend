@@ -1,4 +1,3 @@
-// pages/news/details.js
 "use client";
 
 import React from "react";
@@ -12,7 +11,7 @@ function NewsDetailsPage() {
 
   if (!news) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-gray-700">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-700">
         <BreadCrumbs />
         <p className="text-xl mt-4">No news selected</p>
       </div>
@@ -20,42 +19,50 @@ function NewsDetailsPage() {
   }
 
   return (
-    <div className="flex flex-col items-center py-5 px-4 bg-white min-h-fit">
-      <div className="max-w-[1256px] w-full flex justify-between items-center mb-4">
+    <div className="flex flex-col items-center py-5 px-4 bg-gray-50 min-h-fit">
+      {/* Breadcrumbs and Title */}
+      <div className="max-w-[1256px] w-full flex flex-col sm:flex-row justify-between items-center mb-8">
         <BreadCrumbs />
-        <div className="text-right">
-          <h2 className="text-3xl mr-4 text-sky-950 font-sans font-light">News Details</h2>
-        </div>
+        <h2 className="text-3xl sm:text-4xl text-sky-950 font-sans font-light mt-4 sm:mt-0">
+          News Details
+        </h2>
       </div>
-      <div className="bg-gray-100 shadow-lg rounded-lg overflow-hidden max-w-[1256px] w-full mb-14">
-        <div className="p-6">
-          <h1 className="text-4xl font-sans font-light mb-10 text-center text-gray-900">
+
+      {/* News Card */}
+      <div className="bg-white/80 backdrop-blur-md shadow-lg rounded-lg overflow-hidden max-w-[1256px] w-full mb-14">
+        <div className="p-6 sm:p-8">
+          {/* News Title */}
+          <h1 className="text-3xl sm:text-4xl font-sans font-light mb-6 text-center text-gray-900">
             {news.attributes.Title}
           </h1>
-          <p className="text-lg text-slate-600 leading-relaxed mb-6">
+
+          {/* News Description */}
+          <p className="text-lg text-slate-600 leading-relaxed mb-8">
             {news.attributes.Description}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link  href={news.attributes.Pdf?.data?.attributes?.url || "#"} target="_blank" rel="noopener noreferrer">
-            <div
-              class="transition duration-500 border-2 rounded-sm max-w-[300px] border-sky-500 ease-in-out bg-sky-500 text-white hover:bg-gray-100 hover:text-sky-500 py-2 px-4 "
-              style={{"opacity":"1","transform":"none","willChange":"auto"}}
+
+          {/* Action Button */}
+          <div className="flex justify-center">
+            <Link
+              href={news.attributes.Pdf?.data?.attributes?.url || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              
-              Click for more details
-            
-            </div>
+              <div className="transition duration-500 border-2 rounded-sm border-sky-500 bg-sky-500 text-white hover:bg-white hover:text-sky-500 py-2 px-6 text-lg cursor-pointer">
+                Click for more details
+              </div>
             </Link>
           </div>
         </div>
+
+        {/* News Image */}
         {news.image && (
           <div className="relative h-64 md:h-80 w-full">
             <Image
               src={news.image}
               alt={news.title}
-              layout="fill"
-              objectFit="cover"
-              className="rounded-b-lg"
+              fill
+              className="object-cover rounded-b-lg"
             />
           </div>
         )}

@@ -44,8 +44,8 @@ const TeamComponent = ({ title, description, link, imageUrl }) => {
           />
 
           <div
-            className={`absolute inset-0 backdrop-blur-sm transition-all duration-500 ${
-              hovered ? "bg-black/10 backdrop-blur-none" : "bg-black/40 backdrop-blur-md"
+            className={`absolute inset-0 transition-all duration-300 ${
+              hovered ? "bg-black/10 backdrop-blur-none" : "bg-black/40 backdrop-blur-sm"
             }`}
           />
         </div>
